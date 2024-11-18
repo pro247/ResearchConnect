@@ -18,11 +18,13 @@ export function Register() {
     'Machine Learning',
     'Data Science',
     'Biotechnology',
+    'Nanotechnology',
     'Cybersecurity',
     'Renewable Energy',
     'Quantum Computing',
     'Neuroscience',
     'Climate Change'
+  
   ];
 
   const handleMatch = async () => {
