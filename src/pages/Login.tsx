@@ -15,7 +15,7 @@ export function Login() {
     e.preventDefault();
     setError('');
     setLoading(true);
-
+  
     try {
       const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
@@ -24,12 +24,17 @@ export function Login() {
         },
         body: JSON.stringify(formData),
       });
-
+  
       if (!response.ok) {
-        const responseData = await response.json();
-        throw new Error(responseData.message);
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const responseData = await response.json();
+          throw new Error(responseData.message);
+        } else {
+          throw new Error('Unexpected response from server');
+        }
       }
-
+  
       alert('Login successful!');
       navigate('/dashboard');
     } catch (err) {
