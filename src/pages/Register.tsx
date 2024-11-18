@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { UserPlus, Mail, Lock, User, Briefcase } from 'lucide-react';
+import { UserPlus, Mail, Lock } from 'lucide-react';
 
 export function Register() {
   const [formData, setFormData] = useState({
@@ -8,11 +8,13 @@ export function Register() {
     password: '',
     name: '',
     role: 'student' as 'student' | 'mentor',
-    researchInterest: ''
+    researchInterest: '',
+    enrollmentDate: '',
+    academicLevel: '',
+    specialization: ''
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [matchedMentors, setMatchedMentors] = useState([]);
 
   const researchInterests = [
     'Machine Learning',
@@ -24,23 +26,7 @@ export function Register() {
     'Quantum Computing',
     'Neuroscience',
     'Climate Change'
-  
   ];
-
-  const handleMatch = async () => {
-    try {
-      const response = await fetch('http://localhost:5000/api/match', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ research_interests: formData.researchInterest })
-      });
-
-      const data = await response.json();
-      setMatchedMentors(data); 
-    } catch (err) {
-      console.error('Error fetching matched mentors:', err);
-    }
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -57,7 +43,6 @@ export function Register() {
       if (!response.ok) throw new Error('Registration failed');
 
       alert('Registration successful!');
-      await handleMatch();
     } catch (err) {
       setError('Registration failed. Please try again.');
     } finally {
@@ -153,6 +138,54 @@ export function Register() {
                 ))}
               </select>
             </div>
+
+            {formData.role === 'student' && (
+              <>
+                <div>
+                  <label htmlFor="enrollmentDate" className="sr-only">Enrollment Date</label>
+                  <input
+                    id="enrollmentDate"
+                    name="enrollmentDate"
+                    type="date"
+                    required
+                    className="input-field"
+                    placeholder="Enrollment Date"
+                    value={formData.enrollmentDate}
+                    onChange={(e) => setFormData({ ...formData, enrollmentDate: e.target.value })}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="academicLevel" className="sr-only">Academic Level</label>
+                  <input
+                    id="academicLevel"
+                    name="academicLevel"
+                    type="text"
+                    required
+                    className="input-field"
+                    placeholder="Academic Level"
+                    value={formData.academicLevel}
+                    onChange={(e) => setFormData({ ...formData, academicLevel: e.target.value })}
+                  />
+                </div>
+              </>
+            )}
+
+            {formData.role === 'mentor' && (
+              <div>
+                <label htmlFor="specialization" className="sr-only">Specialization</label>
+                <input
+                  id="specialization"
+                  name="specialization"
+                  type="text"
+                  required
+                  className="input-field"
+                  placeholder="Specialization"
+                  value={formData.specialization}
+                  onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
+                />
+              </div>
+            )}
           </div>
 
           <button type="submit" className="btn-primary w-full" disabled={loading}>
