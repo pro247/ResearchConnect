@@ -2,6 +2,7 @@ const express = require("express");
 const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const bcrypt = require("bcrypt");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,7 +25,7 @@ db.connect((err) => {
   console.log("Connected to MySQL database.");
 });
 
-app.post("/api/register", (req, res) => {
+app.post("/api/register", async (req, res) => {
   const {
     email,
     password,
@@ -36,70 +37,72 @@ app.post("/api/register", (req, res) => {
     specialization,
   } = req.body;
 
-  // Insert into users table
-  const userQuery =
-    "INSERT INTO users (email, password, name, role, research_interest) VALUES (?, ?, ?, ?, ?)";
-  db.query(
-    userQuery,
-    [email, password, name, role, researchInterest],
-    (err, results) => {
-      if (err) {
-        console.error("Error inserting data into users table:", err);
-        return res.status(500).json({ message: "Registration failed" });
-      }
-
-      const userId = results.insertId;
-
-      // Insert into students or mentors table based on role
-      if (role === "student") {
-        const studentQuery =
-          "INSERT INTO students (user_id, enrollment_date, academic_level) VALUES (?, ?, ?)";
-        db.query(
-          studentQuery,
-          [userId, enrollmentDate, academicLevel],
-          (err) => {
-            if (err) {
-              console.error("Error inserting data into students table:", err);
-              return res.status(500).json({ message: "Registration failed" });
-            }
-            res.status(201).json({ message: "User registered successfully" });
-          }
-        );
-      } else if (role === "mentor") {
-        const mentorQuery =
-          "INSERT INTO mentors (name, specialization) VALUES (?, ?)";
-        db.query(mentorQuery, [name, specialization], (err) => {
-          if (err) {
-            console.error("Error inserting data into mentors table:", err);
-            return res.status(500).json({ message: "Registration failed" });
-          }
-          res.status(201).json({ message: "User registered successfully" });
-        });
-      }
+  try {
+    // Check if user already exists
+    const [existingUser] = await db
+      .promise()
+      .query("SELECT * FROM users WHERE email = ?", [email]);
+    if (existingUser.length > 0) {
+      return res.status(400).json({ message: "Email already registered" });
     }
-  );
+
+    // Hash the password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Insert into users table
+    const userQuery =
+      "INSERT INTO users (email, password, name, role, research_interest) VALUES (?, ?, ?, ?, ?)";
+    const [userResult] = await db
+      .promise()
+      .query(userQuery, [email, hashedPassword, name, role, researchInterest]);
+
+    const userId = userResult.insertId;
+
+    // Insert into students or mentors table based on role
+    if (role === "student") {
+      const studentQuery =
+        "INSERT INTO students (user_id, enrollment_date, academic_level) VALUES (?, ?, ?)";
+      await db
+        .promise()
+        .query(studentQuery, [userId, enrollmentDate, academicLevel]);
+    } else if (role === "mentor") {
+      const mentorQuery =
+        "INSERT INTO mentors (name, specialization) VALUES (?, ?)";
+      await db.promise().query(mentorQuery, [name, specialization]);
+    }
+
+    res.status(201).json({ message: "User registered successfully" });
+  } catch (err) {
+    console.error("Error during registration:", err);
+    res.status(500).json({ message: "Registration failed" });
+  }
 });
-app.post("/api/login", (req, res) => {
+
+app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
-  const query = "SELECT * FROM users WHERE email = ?";
-  db.query(query, [email], (err, results) => {
-    if (err) {
-      return res.status(500).json({ message: "Database error" });
-    }
+  try {
+    const [results] = await db
+      .promise()
+      .query("SELECT * FROM users WHERE email = ?", [email]);
     if (results.length === 0) {
       return res.status(404).json({ message: "User not found" });
     }
 
     const user = results[0];
 
-    if (user.password !== password) {
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+    if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid password" });
     }
 
     res.status(200).json({ message: "Login successful", user });
-  });
+  } catch (err) {
+    console.error("Error during login:", err);
+    res.status(500).json({ message: "Database error" });
+  }
 });
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
