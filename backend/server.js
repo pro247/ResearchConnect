@@ -77,7 +77,6 @@ app.post("/api/register", async (req, res) => {
     res.status(500).json({ message: "Registration failed" });
   }
 });
-
 app.post("/api/login", async (req, res) => {
   const { email, password } = req.body;
 
