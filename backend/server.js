@@ -116,6 +116,30 @@ app.get('/api/pending-requests', (req, res) => {
         res.json(results);
     });
 });
+//added for dynamic matching
+app.get("/api/mentors", (req, res) => {
+  const { researchInterest } = req.query; // Optional query parameter for filtering
+
+  let query = 'SELECT * FROM users WHERE role = "mentor"';
+  const params = [];
+
+  if (researchInterest) {
+    query += " AND research_interest LIKE ?";
+    params.push(`%${researchInterest}%`);
+  }
+
+  db.query(query, params, (err, results) => {
+    if (err) {
+      console.error("Error fetching mentors:", err);
+      return res.status(500).json({ message: "Database error" });
+    }
+
+    res.json(results);
+  });
+});
+
+
+
 
 
 app.post('/api/response/:requestId', (req, res) => {

@@ -8,6 +8,7 @@ export function Register() {
     password: '',
     name: '',
     role: 'student' as 'student' | 'mentor',
+    course: '',
     researchInterest: ''
   });
   const [error, setError] = useState('');
