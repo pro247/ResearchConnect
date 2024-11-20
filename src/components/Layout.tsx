@@ -10,7 +10,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     { name: 'Home', href: '/', icon: Home },
     { name: 'Mentorship', href: '/mentorship', icon: Users },
     { name: 'Research Guidelines', href: '/guidelines', icon: Library },
-    { name: 'Profile', href: '/profile', icon: User },
+
   ];
 
   const isActive = (path: string) => location.pathname === path;
