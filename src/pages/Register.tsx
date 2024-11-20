@@ -14,7 +14,6 @@ export function Register() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [matchedMentors, setMatchedMentors] = useState([]);
-
   const researchInterests = [
     'Machine Learning',
     'Data Science',

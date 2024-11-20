@@ -30,8 +30,15 @@ export function Login() {
         throw new Error(responseData.message);
       }
 
+      // Assuming the response contains a token (this depends on your backend)
+      const { token, user } = await response.json();
+      
+      // Store token and user data in localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', JSON.stringify(user));
+
       alert('Login successful!');
-      navigate('/dashboard');
+      navigate('/dashboard'); // Navigate to dashboard on successful login
     } catch (err) {
       setError((err as Error).message || 'Login failed. Please check your email and password.');
     } finally {
