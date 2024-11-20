@@ -39,8 +39,8 @@ export function Guidelines() {
     window.open(url, '_blank');
   };
 
-  const handleUploadClick = () => {
-    navigate('/upload');
+  const handleRechAIClick = () => {
+    navigate('/chatbot');
   };
 
   return (
@@ -51,10 +51,23 @@ export function Guidelines() {
           <p className="text-gray-600 mt-2">Access guides, papers, and tools to support your research</p>
         </div>
         <button
-          onClick={handleUploadClick}
-          className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700"
+          onClick={handleRechAIClick}
+          className="fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700"
+          aria-label="Rech AI"
         >
-          Upload
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-6 h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 12l2 2 4-4"></path>
+          </svg>
         </button>
       </header>
 
