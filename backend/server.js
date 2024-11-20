@@ -231,6 +231,49 @@ app.post('/api/request-connection', (req, res) => {
     });
 });
 
+//chat community code:
+// Fetch all community members
+app.get('/api/community', (req, res) => {
+    const query = 'SELECT id, name, role FROM users';
+    db.query(query, (err, results) => {
+        if (err) {
+            console.error('Error fetching community:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        res.json(results);
+    });
+});
+
+// Save a message
+app.post('/api/messages', (req, res) => {
+    const { senderId, receiverId, message } = req.body;
+    const query = 'INSERT INTO messages (sender_id, receiver_id, message) VALUES (?, ?, ?)';
+    db.query(query, [senderId, receiverId, message], (err) => {
+        if (err) {
+            console.error('Error saving message:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        res.status(201).json({ message: 'Message sent successfully' });
+    });
+});
+
+// Fetch conversation between two users
+app.get('/api/messages/:userId/:otherUserId', (req, res) => {
+    const { userId, otherUserId } = req.params;
+    const query = `
+        SELECT * FROM messages 
+        WHERE (sender_id = ? AND receiver_id = ?) 
+        OR (sender_id = ? AND receiver_id = ?)
+        ORDER BY timestamp ASC`;
+    db.query(query, [userId, otherUserId, otherUserId, userId], (err, results) => {
+        if (err) {
+            console.error('Error fetching messages:', err);
+            return res.status(500).json({ message: 'Database error' });
+        }
+        res.json(results);
+    });
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
