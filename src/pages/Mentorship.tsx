@@ -32,25 +32,13 @@ export function Mentorship() {
         let mentorResponse = "";
 
         if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
-          mentorResponse = "Hello! How can I assist you with your AI research today?";
+          mentorResponse = "Hello! Could you briefly tell me about your background in AI? Do you have any prior experience or specific areas you're interested in?";
         } else if (message.toLowerCase().includes("background")) {
-          mentorResponse = "Great, before we dive into the research, could you briefly tell me about your background in AI? Do you have any prior experience or specific areas you're interested in?";
-        } else if (message.toLowerCase().includes("i have worked on machine learning") || message.toLowerCase().includes("i have experience with ai")) {
-          mentorResponse = "That’s fantastic! Since you have experience with machine learning, would you like to explore deep learning techniques or reinforcement learning? We could also talk about challenges in model deployment if you're interested.";
-        } else if (message.toLowerCase().includes("beginner")) {
-          mentorResponse = "No problem! If you're new to AI, it's good to start with foundational topics like supervised learning and basic neural networks. Have you already worked on any machine learning projects?";
-        } else if (message.toLowerCase().includes("supervised learning")) {
-          mentorResponse = "Supervised learning is a great starting point. You'll typically work with labeled data to train models. Do you have a dataset in mind, or would you like me to suggest some sources?";
-        } else if (message.toLowerCase().includes("deep learning") || message.toLowerCase().includes("natural language processing")) {
-          mentorResponse = "Deep learning and NLP are exciting areas of research! Do you have any specific problem you're thinking about, like text classification or neural machine translation?";
-        } else if (message.toLowerCase().includes("datasets") || message.toLowerCase().includes("data")) {
-          mentorResponse = "Datasets are crucial for AI research. Platforms like Kaggle, UCI, and Google Dataset Search offer many options. Are you looking for a specific type of dataset, such as text, image, or tabular data?";
-        } else if (message.toLowerCase().includes("project") || message.toLowerCase().includes("idea")) {
-          mentorResponse = "AI research projects can range from small proofs of concept to large-scale implementations. Are you considering a small-scale project like sentiment analysis or something more complex like building a neural network model?";
-        } else if (message.toLowerCase().includes("challenges") || message.toLowerCase().includes("struggle")) {
-          mentorResponse = "AI research comes with challenges, such as poor-quality data, overfitting, and model interpretability. Which challenges do you feel you’re facing, or is there any area you'd like help with?";
+          mentorResponse = "Great, could you let me know the specific research area you are focusing on?";
+        } else if (message.toLowerCase().includes("research area")) {
+          mentorResponse = "Alright, we will begin with problem framing. Here are some tips on problem framing in research writing: \n1. Clearly define the problem statement. \n2. Review relevant literature to understand the context. \n3. Identify the research gap. \n4. Formulate research questions or hypotheses. \nPlease submit your problem framing draft once you are done.";
         } else {
-          mentorResponse = "AI research is vast. I suggest starting with a specific area. Could you let me know if you’re more interested in machine learning, deep learning, NLP, or another field?";
+          mentorResponse = "Could you please provide more details or ask a specific question?";
         }
 
         setMessages((prevMessages) => [
