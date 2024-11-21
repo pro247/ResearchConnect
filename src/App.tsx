@@ -7,6 +7,7 @@ import { Guidelines } from "./pages/Guidelines";
 import { Chatbot } from "./pages/chatbot";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
+import RechieChat from "./pages/Rechie";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/mentorship/:mentorId" element={<Mentorship />} /> 
           <Route path="/guidelines" element={<Guidelines />} />
+          <Route path="/rechie" element={<RechieChat />} />
           <Route path="/chatbot" element={<Chatbot/>}/>
          
         </Routes>
@@ -26,5 +28,4 @@ function App() {
     </BrowserRouter>
   );
 }
-
 export default App;
