@@ -40,9 +40,9 @@ export function Guidelines() {
   };
 
   const handleRechAIClick = () => {
-    navigate('/chatbot');
+    window.location.href = 'https://poe.com/Rechie';
   };
-
+  
   return (
     <div className="max-w-7xl mx-auto">
       <header className="mb-8 flex justify-between items-center">
@@ -51,24 +51,16 @@ export function Guidelines() {
           <p className="text-gray-600 mt-2">Access guides, papers, and tools to support your research</p>
         </div>
         <button
-          onClick={handleRechAIClick}
-          className="fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700"
-          aria-label="Rech AI"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-6 h-6"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M8 12l2 2 4-4"></path>
-          </svg>
-        </button>
+  onClick={handleRechAIClick}
+  className="fixed bottom-6 right-6 bg-indigo-600 text-white p-4 rounded-full shadow-lg hover:bg-indigo-700"
+  aria-label="Rech AI"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <path d="M8 12l2 2 4-4"></path>
+  </svg>
+</button>
+
       </header>
 
       <div className="card mb-8">
