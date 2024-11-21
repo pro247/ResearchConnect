@@ -4,7 +4,7 @@ import { Home } from "./pages/Home";
 import { Dashboard } from "./pages/Dashboard";
 import { Mentorship } from "./pages/Mentorship";
 import { Guidelines } from "./pages/Guidelines";
-import { Profile } from "./pages/Profile";
+import { Chatbot } from "./pages/chatbot";
 import { Register } from "./pages/Register";
 import { Login } from "./pages/Login";
 
@@ -19,7 +19,8 @@ function App() {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/mentorship/:mentorId" element={<Mentorship />} /> 
           <Route path="/guidelines" element={<Guidelines />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/chatbot" element={<Chatbot/>}/>
+         
         </Routes>
       </Layout>
     </BrowserRouter>
