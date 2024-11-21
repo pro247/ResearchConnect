@@ -5,7 +5,6 @@ import { Home, Users, Library, User, Menu, X } from 'lucide-react';
 export function Layout({ children }: { children: React.ReactNode }) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
-
   const navigation = [
     { name: 'Home', href: '/', icon: Home },
     { name: 'Mentorship', href: '/mentorship', icon: Users },
