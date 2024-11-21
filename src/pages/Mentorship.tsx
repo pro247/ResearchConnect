@@ -31,12 +31,14 @@ export function Mentorship() {
       setTimeout(() => {
         let mentorResponse = "";
 
-        if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) {
-          mentorResponse = "Hello! Could you briefly tell me about your background in AI? Do you have any prior experience or specific areas you're interested in?";
-        } else if (message.toLowerCase().includes("background")) {
+        if (messages.length === 0 && (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi"))) {
+          mentorResponse = "Hello there, Could you briefly tell me about your background in AI? Do you have any prior experience or specific areas you're interested in?";
+        } else if (messages.length === 1) {
           mentorResponse = "Great, could you let me know the specific research area you are focusing on?";
-        } else if (message.toLowerCase().includes("research area")) {
+        } else if (messages.length === 2) {
           mentorResponse = "Alright, we will begin with problem framing. Here are some tips on problem framing in research writing: \n1. Clearly define the problem statement. \n2. Review relevant literature to understand the context. \n3. Identify the research gap. \n4. Formulate research questions or hypotheses. \nPlease submit your problem framing draft once you are done.";
+        } else if (message.toLowerCase().includes("thank you") || message.toLowerCase().includes("thanks")) {
+          mentorResponse = "You're welcome";
         } else {
           mentorResponse = "Could you please provide more details or ask a specific question?";
         }
