@@ -40,3 +40,9 @@
 .read-the-docs {
   color: #888;
 }
+
+iframe {
+  max-width: 100%;
+  height: calc(100vh - 100px); /* Adjust height as needed */
+  border-radius: 8px; /* Optional: Add some rounded corners */
+}
