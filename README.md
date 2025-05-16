@@ -6,7 +6,7 @@
 
 ## Overview
 
-**ResearchConnect** is a full-stack web application designed to bridge the gap in research exposure for African students — especially at the undergraduate level. Many students in Africa only encounter research guidance late in their academic careers, often without structured mentorship or access to research networks. This platform aims to change that.
+**ResearchConnect** is a full-stack web application designed to bridge the gap in research exposure for African students, especially at the undergraduate level. Many students in Africa only encounter research guidance late in their academic careers, often without structured mentorship or access to research networks. This platform aims to change that.
 
 With **AI-driven personalized support**, **peer collaboration tools**, and connections to African journals and funding opportunities, ResearchConnect helps students navigate their research journey from topic discovery to publishing.
 
