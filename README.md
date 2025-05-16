@@ -1,51 +1,76 @@
-# React + TypeScript + Vite
+# ResearchConnect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**AI-Aided Research Exposure & Guidance Platform for African Students**
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Overview
 
-## Expanding the ESLint configuration
+**ResearchConnect** is a full-stack web application designed to bridge the gap in research exposure for African students — especially at the undergraduate level. Many students in Africa only encounter research guidance late in their academic careers, often without structured mentorship or access to research networks. This platform aims to change that.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+With **AI-driven personalized support**, **peer collaboration tools**, and connections to African journals and funding opportunities, ResearchConnect helps students navigate their research journey from topic discovery to publishing.
 
-- Configure the top-level `parserOptions` property like this:
+---
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## Key Features
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+- **Rechie**, our AI chatbot assistant:
+  - Suggests research topics based on student interests
+  - Recommends step-by-step learning modules
+  - Connects students with African-based research supervisors and journals
+  - Helps discover funding opportunities
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+-  **Gamified Learning Experience**
+  - Badges, milestones, and progress tracking
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# RC
+- **Study Buddies & Mentorship**
+  - Connect with peers and mentors
+
+---
+
+##  Tech Stack
+
+###  Current (Prototype)
+- **Frontend:** React Native + TypeScript
+- **Backend:** Node.js (local server)
+- **Database:** MySQL (local)
+- **AI Layer:** OpenAI API (for natural language guidance)
+
+### Planned (Production)
+- **Frontend:** Flutter
+- **Backend:** Node.js / Firebase
+- **Database:** Firestore or MongoDB
+- **AI Layer:** OpenAI API + Locally fine-tuned LLMs on African academic content
+
+---
+
+## Implementation Plan
+
+- MVP pilot rollout at select Malawian institutions
+- Collaborate with universities to integrate research curriculum
+- Partner with African AI/EdTech orgs for training data
+- Scale via **Smart Africa** regional academic networks
+
+---
+
+## Stakeholders
+
+- University departments & institutions
+- Research supervisors & mentors
+- African-based journals & grant providers
+- Ministries of Education / Innovation hubs
+
+---
+
+## Contributors
+
+- **Chifuniro Mthunzi** – Full Stack Developer  
+- **Doreen Abel province** – Full Stack Developer  
+- **Nyaraih Banda** – Full Stack Developerr  
+
+---
+
+## 📄 License
+
+[MIT License](LICENSE)
+
