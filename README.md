@@ -64,7 +64,7 @@ With **AI-driven personalized support**, **peer collaboration tools**, and conne
 
 ## Contributors
 
-- **Chifuniro Mthunzi** – Full Stack Developer  
+- **Chifuniro kudakwashe  Mthunzi** – Full Stack Developer  
 - **Doreen Abel province** – Full Stack Developer  
 - **Nyaraih Banda** – Full Stack Developerr  
 
